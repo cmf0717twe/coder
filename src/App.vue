@@ -1,32 +1,99 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+	<div id="app">
+		<router-view />
+	</div>
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+	body,
+	div,
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	p,
+	table,
+	tr,
+	td,
+	th,
+	ul,
+	ol,
+	li,
+	dl,
+	dt,
+	dd,
+	span,
+	html,
+	textarea,
+	select,
+	option,
+	button,
+	strong,
+	em {
+		margin: 0;
+		padding: 0;
+	}
 
-#nav {
-  padding: 30px;
-}
+	a,
+	a:link,
+	a:active,
+	a:hover,
+	a:visited {
+		text-decoration: none;
+		color: #3c3c3c;
+	}
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+	textarea,
+	button,
+	select,
+	option {
+		border: 0px;
+		background-color: transparent;
+		outline: none;
+	}
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+	ul,
+	ol,
+	li {
+		list-style: none;
+		padding: 0px;
+		margin: 0px;
+	}
+
+	img {
+		width: 100%;
+		display: block;
+	}
+
+	.clearFloat::after {
+		display: block;
+		content: "";
+		height: 0px;
+		visibility: hidden;
+		clear: both;
+		*zoom: 1;
+		/*IE的过滤器*/
+	}
+
+	.fl {
+		float: left;
+	}
+
+	.fr {
+		float: right;
+	}
+
+	.ab {
+		position: absolute;
+	}
+
+	.re {
+		position: relative;
+	}
+
+	.c {
+		text-align: center;
+	}
 </style>
