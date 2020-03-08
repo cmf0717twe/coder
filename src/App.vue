@@ -1,6 +1,9 @@
 <template>
 	<div id="app">
-		<router-view />
+		<keep-alive exclude="Publicity">
+			<!-- 将最开始的宣传页面排除在keep-alive之外,如果要排除两个以上的组件,用逗号隔开即可(警告:此次逗号后不可加空格) -->
+			<router-view />
+		</keep-alive>
 	</div>
 </template>
 

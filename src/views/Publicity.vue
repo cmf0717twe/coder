@@ -45,13 +45,8 @@ export default {
       $(".bgl2").css("opacity", "0");
     }
   },
+  //mounted一般在模板渲染成html后调用,通常是初始化页面完成后,再对html的dom节点进行一些需要的操作
   mounted() {
-    //在模板渲染成html后调用，通常是初始化页面完成后，再对html的dom节点进行一些需要的操作
-    //封装获取id函数
-    function _id(id) {
-      return document.getElementById(id);
-    }
-
     //封装一个ClassName函数
     function _className(className) {
       return document.getElementsByClassName(className);
@@ -182,7 +177,7 @@ export default {
       };
     }, 1000);
     var a = 1;
-    setInterval(function() {
+    const lineMove = setInterval(function() {
       var top = _className("lineMove")[0].offsetTop;
       top += a;
       _className("lineMove")[0].style.top = top + "px";
@@ -190,11 +185,35 @@ export default {
         a = -1 * a;
       }
     }, 20);
+    this.$once("hook:beforeDestroy", () => {
+      //通过$once这个事件侦听器在定义完定时器之后的位置来清除定时器
+      clearInterval(lineMove);
+      document.onmousemove = null;
+    });
+  },
+  //在渲染该组件的对应路由前被confirm调用,不能获取组件实例"this",因为守卫执行在前,组件实例还未创建
+  beforeRouteEnter(to, from, next) {
+    next();
+  },
+  //在当前路由改变,但是该组件被复用时调用,例如带动态参数的路径或内嵌子路由,可以访问组件实例"this"
+  beforeRouteUpdate(to, from, next) {
+    next();
+  },
+  //导航离开该组件的对应路由时调用,可以访问组件实例"this"
+  beforeRouteLeave(to, from, next) {
+    next();
+  },
+  //当组件进入活跃状态会执行activated,配合keep-alive标签使用(该函数只有该组件被keep-alive标签包裹时才有效)
+  activated() {},
+  //当组件进入不活跃状态会执行deactivated,配合keep-alive标签使用(该函数只有该组件被keep-alive标签包裹时才有效)
+  deactivated() {
+    //警告:在deactivated中获取this.$route.path,会获取到已经转变为活跃状态的路由(deactivated为状态变为不活跃之后)
+    //提示:若想获取当前转变为不活跃状态的路由(配合keep-alive做回跳操作)可在beforeRouteLeave中使用this.$route.path
   }
 };
 </script>
 
-<style>
+<style scoped>
 .bigBG {
   height: 1080px;
   background: url(../assets/Publicity/bg.jpg) top center no-repeat;
