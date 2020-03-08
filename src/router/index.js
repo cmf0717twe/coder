@@ -21,7 +21,7 @@ const routes = [//配置路由和组件之间的映射关系
     meta: {
       title: "少女前线"
     },
-    component: () => import('../views/homePage.vue'),
+    component: () => import('../views/home.vue'),
     children: [
       {
         path: '',

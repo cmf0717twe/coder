@@ -11,7 +11,7 @@ import topone from "../components/topone";
 import bottom from "../components/bottom";
 
 export default {
-  name: "homePage",
+  name: "home",
   components: {
     topone,
     bottom
